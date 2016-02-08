@@ -6,39 +6,68 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:46:02 by bchevali          #+#    #+#             */
-/*   Updated: 2016/01/28 17:44:10 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/08 17:04:04 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int		nbsign_adj(char *piece, int i, int nb_found)
+static int		nbsign_adj(char *piece, int *tmp)
 {
-	if ((piece[i + 1] && piece[i + 1] == '#') || nb_found == 4)
-		return (1);
-	if (piece[i + 5] && piece[i + 5] == '#')
-		return (1);
-	return (0);
+	int		i;
+	int		j;
+	int		end;
+	int		check[4] = {1, 0, 0, 0};
+
+	i = 1;
+	j = 1;
+	end = 0;
+	while (i < 4)
+	{
+		if (sub_one(tmp[i], piece, check, tmp) && !check[i])
+			check[i] = 1;
+		else if (sub_five(tmp[i], piece, check, tmp) && !check[i])
+			check[i] = 1;
+		else if (add_one(tmp[i], piece, check, tmp) && !check[i])
+			check[i] = 1;
+		else if (add_five(tmp[i], piece, check, tmp) && !check[i])
+			check[i] = 1;
+		if (i == 3 && end < 2)
+		{
+			i = 0;
+			end += 1;
+		}
+		++i;
+	}
+	while (j < 4)
+	{
+		if (!check[j])
+			return (0);
+		++j;
+	}
+	return (1);
 }
 
 static int		form_sign(char *piece)
 {
 	int		i;
-	int		nb_found;
+	int		i2;
+	int		ret;
+	int		tab[4] = {0, 0, 0, 0};
 
 	i = 0;
-	nb_found = 0;
+	i2 = 0;
 	while (piece[i])
 	{
-		while (piece[i] == '#')
+		if (piece[i] == '#')
 		{
-			++nb_found;
-			i = nbsign_adj(piece, i, nb_found))
+			tab[i2] = i;
+			++i2;
 		}
-		if ()
 		++i;
 	}
-	return (1);
+	ret = nbsign_adj(piece, tab);
+	return (ret);
 }
 
 static int		check_char(char *piece)
@@ -65,14 +94,13 @@ static int		check_char(char *piece)
 	return (1);
 }
 
-int		check_pieces(char **tab_piece)
+int				check_pieces(char **tab_piece)
 {
 	int		i;
 
 	i = 0;
 	while (tab_piece[i])
 	{
-		printf("%d\n", i);
 		if (!check_char(tab_piece[i]))
 			return (0);
 		if (!form_sign(tab_piece[i]))

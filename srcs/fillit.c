@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 14:10:56 by bchevali          #+#    #+#             */
-/*   Updated: 2016/01/27 18:13:13 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/03 16:54:44 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,14 @@ static int	get_file(int fd, char **pieces)
 
 void		fillit(char *file)
 {
-	int		fd;
-	char	*pieces;
-	char	**tab_piece;
-	int		i;
+	int			i;
+	int			fd;
+	char		*pieces;
+	char		**tab_piece;
 
 	i = 0;
 	pieces = 0;
-	if((fd = open(file, O_RDONLY)) != -1)
+	if ((fd = open(file, O_RDONLY)) != -1)
 	{
 		if (get_file(fd, &pieces))
 		{

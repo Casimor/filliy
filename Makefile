@@ -6,7 +6,7 @@
 #    By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/01/28 15:55:15 by bchevali         ###   ########.fr        #
+#    Updated: 2016/02/08 15:19:22 by bchevali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,8 @@ LFLAGS				=	-L$(LIBFT_DIR) -l$(LIBFT)
 SRC					=	main.c				\
 						fillit.c			\
 						read_file.c			\
-						check_file.c
+						check_file.c		\
+						opt_check.c
 
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

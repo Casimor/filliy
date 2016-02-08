@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:17:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/01/28 15:56:17 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/08 15:20:58 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ static char		**split_pieces(char *pieces)
 	return (tab_piece);
 }
 
-char 		**read_file(char *pieces)
+char			**read_file(char *pieces)
 {
 	char	**tab_piece;
 
