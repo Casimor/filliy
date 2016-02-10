@@ -6,7 +6,7 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:46:02 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/08 17:04:04 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/10 16:37:36 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,12 @@
 static int		nbsign_adj(char *piece, int *tmp)
 {
 	int		i;
-	int		j;
 	int		end;
-	int		check[4] = {1, 0, 0, 0};
+	int		check[4];
 
 	i = 1;
-	j = 1;
 	end = 0;
+	init_at_zero(check, 1);
 	while (i < 4)
 	{
 		if (sub_one(tmp[i], piece, check, tmp) && !check[i])
@@ -39,13 +38,7 @@ static int		nbsign_adj(char *piece, int *tmp)
 		}
 		++i;
 	}
-	while (j < 4)
-	{
-		if (!check[j])
-			return (0);
-		++j;
-	}
-	return (1);
+	return (check_valid(check));
 }
 
 static int		form_sign(char *piece)
@@ -53,10 +46,11 @@ static int		form_sign(char *piece)
 	int		i;
 	int		i2;
 	int		ret;
-	int		tab[4] = {0, 0, 0, 0};
+	int		tab[4];
 
 	i = 0;
 	i2 = 0;
+	init_at_zero(tab, 0);
 	while (piece[i])
 	{
 		if (piece[i] == '#')

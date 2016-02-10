@@ -6,11 +6,25 @@
 /*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 14:08:38 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/08 16:37:47 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/10 16:37:28 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	init_at_zero(int *tab, int opt)
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		tab[i] = 0;
+		++i;
+	}
+	if (opt == 1)
+		tab[0] = 1;
+}
 
 int		sub_one(int index, char *piece, int *check, int *pos)
 {
