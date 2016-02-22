@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/10 16:37:48 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/22 18:27:35 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,40 @@
 #include <stdio.h>
 //care
 
-void		fillit(char *file);
-char		**read_file(char *pieces);
-int			check_pieces(char **tab_pieces);
+#define USAGE "usage: ./fillit <File>"
 
-int			check_valid(int *tab);
+typedef struct		s_fillit
+{
+	int				nb_piece;
+	char			**pieces;
+}					t_fillit;
+
+/*
+**	check_file.c
+*/
+int		nbsign_adj(char *piece, int *tmp);
+int		form_sign(char *piece);
+int		check_char(char *piece);
+int		check_pieces(char **tab_piece);
+int		check_valid(int *tab);
+
+/*
+**	read_file.c
+*/
+void		replace_char(char **tab_piece);
+char		**split_pieces(char *pieces);
+char		**get_pieces(char *pieces);
+int			count_piece(char *pieces);
+int			get_file(int fd, char **pieces);
+
+/*
+**	sequence.c
+*/
+void	init_structure_fillit(t_fillit *fillit);
+void	init_sequence_fillit(int ac, char **av, t_fillit *fillit);
+void	launch_sequence(t_fillit *fillit);
+void	free_fillit(t_fillit *fillit);
+void	set_error_quit(char *str, t_fillit *fillit);
 
 /*
 **	opt_CHECK.c

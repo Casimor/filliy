@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:17:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/10 15:39:54 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/22 18:55:43 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static void		replace_char(char **tab_piece)
+void		replace_char(char **tab_piece)
 {
 	int		i;
 	int		j;
@@ -34,23 +34,7 @@ static void		replace_char(char **tab_piece)
 	}
 }
 
-static int		count_piece(char *pieces)
-{
-	int		i;
-	int		j;
-
-	i = 0;
-	j = 0;
-	while (pieces[i])
-	{
-		if (pieces[i] == '\n' && pieces[i + 1] == '\n')
-			++j;
-		i++;
-	}
-	return (j + 1);
-}
-
-static char		**split_pieces(char *pieces)
+char		**split_pieces(char *pieces)
 {
 	char	**tab_piece;
 	int		i;
@@ -75,11 +59,26 @@ static char		**split_pieces(char *pieces)
 		}
 		tab_piece[a] = ft_strsub(pieces, j, i - j);
 	}
-	free(pieces);
 	return (tab_piece);
 }
 
-char			**read_file(char *pieces)
+int		count_piece(char *pieces)
+{
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	while (pieces[i])
+	{
+		if (pieces[i] == '\n' && pieces[i + 1] == '\n')
+			++j;
+		i++;
+	}
+	return (j + 1);
+}
+
+char			**get_pieces(char *pieces)
 {
 	char	**tab_piece;
 
@@ -96,4 +95,30 @@ char			**read_file(char *pieces)
 		}
 	}
 	return (tab_piece);
+}
+
+int	get_file(int fd, char **pieces)
+{
+	char		buf[BUFF_SIZE + 1];
+	ssize_t		ret;
+	int			i;
+	char		*tmp;
+
+	i = 0;
+	tmp = NULL;
+	while ((ret = read(fd, buf, BUFF_SIZE)) > 0)
+	{
+		buf[ret] = '\0';
+		if (!*pieces)
+			*pieces = ft_strdup(buf);
+		else
+		{
+			tmp = *pieces;
+			*pieces = ft_strjoin(*pieces, buf);
+		}
+		free(tmp);
+	}
+	if (ret == -1)
+		return (0);
+	return (1);
 }

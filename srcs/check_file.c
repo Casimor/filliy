@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_file.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:46:02 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/10 16:37:36 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/22 18:18:56 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int		nbsign_adj(char *piece, int *tmp)
+int		nbsign_adj(char *piece, int *tmp)
 {
 	int		i;
 	int		end;
@@ -41,7 +41,7 @@ static int		nbsign_adj(char *piece, int *tmp)
 	return (check_valid(check));
 }
 
-static int		form_sign(char *piece)
+int		form_sign(char *piece)
 {
 	int		i;
 	int		i2;
@@ -64,7 +64,7 @@ static int		form_sign(char *piece)
 	return (ret);
 }
 
-static int		check_char(char *piece)
+int		check_char(char *piece)
 {
 	int		i;
 	int		nb_line;
@@ -103,5 +103,19 @@ int				check_pieces(char **tab_piece)
 	}
 	if (i > 26)
 		return (0);
+	return (1);
+}
+
+int		check_valid(int *tab)
+{
+	int		i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if (!tab[i])
+			return (0);
+		++i;
+	}
 	return (1);
 }

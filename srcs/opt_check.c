@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   opt_check.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/08 14:08:38 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/10 16:37:28 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/02/22 18:41:58 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		sub_five(int index, char *piece, int *check, int *pos)
 	int		i;
 
 	i = 0;
-	if (piece[index - 5] && piece[index - 5] == '#')
+	if (index > 4 && piece[index - 5] && piece[index - 5] == '#')
 	{
 		while (i < 4)
 		{
