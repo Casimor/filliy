@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:17:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/22 18:55:43 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/23 17:11:08 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,59 @@ int		count_piece(char *pieces)
 	return (j + 1);
 }
 
-char			**get_pieces(char *pieces)
+int		get_pieces(char *pieces, t_piece **piece)
 {
 	char	**tab_piece;
+	int		nb_piece;
 
+	nb_piece = 0;
 	tab_piece = split_pieces(pieces);
-	if (tab_piece)
+	if (!tab_piece)
+		return (0);
+	if (check_pieces(tab_piece))
 	{
-		if (check_pieces(tab_piece))
-			replace_char(tab_piece);
-		else
-		{
-			ft_free_tab(tab_piece);
-			ft_putendl_fd("error", 2);
-			return (NULL);
-		}
+		*piece = format_pieces_from_char(tab_piece, count_piece(pieces));
+		ft_free_tab(tab_piece);
+		return (1);
 	}
-	return (tab_piece);
+	else
+	{
+		ft_free_tab(tab_piece);
+		ft_putendl_fd("error", 2);
+		return (0);
+	}
+}
+
+t_piece	*format_pieces_from_char(char **tab, int nb)
+{
+	int	i;
+	t_piece		*piece;
+
+	i = 0;
+	piece = NULL;
+	while (i < nb)
+	{
+		add_piece_end(&piece, create_piece(tab[i], i));
+		i++;
+	}
+	return (piece);
+}
+
+
+
+void	add_piece_end(t_piece **first, t_piece *piece)
+{
+	t_piece	*tmp;
+
+	tmp = *first;
+	if (!tmp)
+		*first = piece;
+	else
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = piece;
+	}
 }
 
 int	get_file(int fd, char **pieces)

@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/22 18:27:35 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/23 17:18:21 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,37 @@
 typedef struct		s_fillit
 {
 	int				nb_piece;
-	char			**pieces;
+	struct s_piece	*pieces;
 }					t_fillit;
+
+typedef struct		s_pos
+{
+	int				x;
+	int				y;
+}					t_pos;
+
+typedef struct		s_piece
+{
+	t_pos			p1;
+	t_pos			p2;
+	t_pos			p3;
+	t_pos			p4;
+	char			c;
+	struct s_piece	*next;
+}					t_piece;
+
+/*
+** main.c
+*/
+void	print_pieces(t_piece *pieces);
+
+/*
+**	create_piece.c
+*/
+t_piece *create_piece(char *str, int value);
+void	set_pos_part_piece(char *str, t_piece **piece);
+t_pos	calc_pos_part(int x);
+
 
 /*
 **	check_file.c
@@ -44,9 +73,12 @@ int		check_valid(int *tab);
 */
 void		replace_char(char **tab_piece);
 char		**split_pieces(char *pieces);
-char		**get_pieces(char *pieces);
+int			get_pieces(char *pieces, t_piece **piece);
 int			count_piece(char *pieces);
 int			get_file(int fd, char **pieces);
+
+t_piece	*format_pieces_from_char(char **tab, int nb);
+void	add_piece_end(t_piece **first, t_piece *piece);
 
 /*
 **	sequence.c

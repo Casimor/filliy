@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 16:00:44 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/22 18:43:07 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/23 17:12:21 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,13 @@ void	init_sequence_fillit(int ac, char **av, t_fillit *fillit)
 	{
 		if (get_file(fd, &pieces))
 		{
-			fillit->pieces = get_pieces(pieces);
-			fillit->nb_piece = count_piece(pieces);
+			if (get_pieces(pieces, &(fillit->pieces)))
+				fillit->nb_piece = count_piece(pieces);
+			else
+			{
+				free(pieces);
+				set_error_quit("error pieces", fillit);
+			}
 			free(pieces);
 		}
 		else
@@ -45,15 +50,14 @@ void	init_sequence_fillit(int ac, char **av, t_fillit *fillit)
 
 void	free_fillit(t_fillit *fillit)
 {
-	int	i;
+	t_piece	*tmp;
 
-	i = 0;
-	while (i < fillit->nb_piece)
-		free(fillit->pieces[i++]);
-	if (fillit->nb_piece)
+	tmp = NULL;
+	while (fillit->pieces)
 	{
-		free(fillit->pieces);
-		fillit->pieces = NULL;
+		tmp = fillit->pieces;
+		fillit->pieces = fillit->pieces->next;
+		free(tmp);
 	}
 }
 
