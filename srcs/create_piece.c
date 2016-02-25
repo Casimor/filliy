@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:59:50 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/25 17:12:10 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 18:37:42 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ t_piece *create_piece(char *str, int value)
 		set_pos_part_piece(str, &piece);
 	piece->next = NULL;
 	piece->c = 'A' + value;
+	piece->put = 0;
 	return (piece);
 }
 

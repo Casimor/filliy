@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/25 17:25:07 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 18:48:51 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct		s_piece
 	t_pos			p3;
 	t_pos			p4;
 	char			c;
+	int				put;
 	struct s_piece	*next;
 }					t_piece;
 
@@ -70,7 +71,16 @@ int		get_size_square_theoretic(int nb);
 /*
 **	piece_tool.c
 */
-int		put_piece(char **t, t_piece *piece, t_pos pos, int len);
+int		can_put_piece(t_map map, t_piece *piece, t_pos pos);
+int		check_pos_part_piece(t_pos pos, t_pos part, t_pos p1, t_map map);
+void	do_put_piece(t_map	**map, t_piece *piece, t_pos pos);
+int		all_pieces_puted(t_piece *piece);
+
+/*
+**	solve_map.c
+*/
+int	solve_square(t_map *map, t_fillit *fillit, int len);
+int	go_solve1(t_map	*map, t_fillit **fillit);
 
 /*
 **	map.c
@@ -79,6 +89,7 @@ t_map	init_map(int len);
 char	*init_value_line_map(char *line, int len);
 void	print_map(t_map map);
 void	free_map(t_map map);
+t_pos	get_first_pos_map(t_map map);
 
 
 /*
