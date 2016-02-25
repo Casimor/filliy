@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:26:25 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/25 18:50:57 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:19:28 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,17 @@ int	go_solve1(t_map	*map, t_fillit **fillit)
 	while ((*fillit)->pieces)
 	{
 		pos = get_first_pos_map(*map);
+		printf("Premier case libre: x->%d, y->%d\n", pos.x, pos.y);
 		if (can_put_piece(*map, (*fillit)->pieces, pos))
 		{
+			print_map(*map);
 			do_put_piece(&map, (*fillit)->pieces, pos);
-			//printf("une piece de mise\n");
+			printf("une piece de mise ->%c\n", (*fillit)->pieces->c);
+			print_map(*map);
 			(*fillit)->pieces->put = 1;
 		}
+		else
+			printf("impossible de mettre la piece en x->%d, y->%d\n", pos.x, pos.y);
 		(*fillit)->pieces = (*fillit)->pieces->next;
 	}
 	(*fillit)->pieces = tmp;

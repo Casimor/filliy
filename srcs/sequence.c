@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 16:00:44 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/25 17:32:45 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:13:30 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,15 @@ void	launch_sequence(t_fillit *fillit)
 	int		len;
 
 	len = get_size_square_theoretic(fillit->nb_piece);
-	while (!solve_square(&map, fillit, len))
+
+	int	i = 0;
+	while (i < 1)
+	{
+		if (solve_square(&map, fillit, len))
+			break ;
 		len++;
+		i++;
+	}
 	print_map(map);
 	free_map(map);
 }

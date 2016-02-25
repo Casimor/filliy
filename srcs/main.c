@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:50:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/25 16:33:44 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 19:10:03 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int				main(int ac, char **av)
 
 	init_structure_fillit(&fillit);
 	init_sequence(--ac, av, &fillit);
-	//print_pieces(fillit.pieces);
+	print_pieces(fillit.pieces);
 	launch_sequence(&fillit);
 	free_fillit(&fillit);
 	return (0);
