@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:50:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/23 17:12:05 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 16:33:44 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int				main(int ac, char **av)
 	t_fillit	fillit;
 
 	init_structure_fillit(&fillit);
-	init_sequence_fillit(--ac, av, &fillit);
-	print_pieces(fillit.pieces);
-	//launch_sequence_fillit(&fillit);
+	init_sequence(--ac, av, &fillit);
+	//print_pieces(fillit.pieces);
+	launch_sequence(&fillit);
 	free_fillit(&fillit);
 	return (0);
 }
@@ -29,22 +29,19 @@ void	print_pieces(t_piece *pieces)
 	int	i;
 
 	i = 1;
-	while (pieces->next)
+	while (pieces)
 	{
-		printf("-- Piece number %d\n", i);
-		printf("--- p1: x->%d, y->%d\n", pieces->p1.x, pieces->p1.y);
-		printf("--- p2: x->%d, y->%d\n", pieces->p2.x, pieces->p2.y);
-		printf("--- p3: x->%d, y->%d\n", pieces->p3.x, pieces->p3.y);
-		printf("--- p4: x->%d, y->%d\n", pieces->p4.x, pieces->p4.y);
-		printf("----- valeur de la lettre ->%c\n\n", pieces->c);
+		print_piece(pieces, i++);
 		pieces = pieces->next;
-		i++;
 	}
+}
 
-		printf("-- Piece number %d\n", i);
-		printf("--- p1: x->%d, y->%d\n", pieces->p1.x, pieces->p1.y);
-		printf("--- p2: x->%d, y->%d\n", pieces->p2.x, pieces->p2.y);
-		printf("--- p3: x->%d, y->%d\n", pieces->p3.x, pieces->p3.y);
-		printf("--- p4: x->%d, y->%d\n", pieces->p4.x, pieces->p4.y);
-		printf("----- valeur de la lettre ->%c\n\n", pieces->c);
+void	print_piece(t_piece *piece, int num)
+{
+	printf("-- Piece number %d\n", num);
+	printf("--- p1: x->%d, y->%d\n", piece->p1.x, piece->p1.y);
+	printf("--- p2: x->%d, y->%d\n", piece->p2.x, piece->p2.y);
+	printf("--- p3: x->%d, y->%d\n", piece->p3.x, piece->p3.y);
+	printf("--- p4: x->%d, y->%d\n", piece->p4.x, piece->p4.y);
+	printf("----- valeur de la lettre ->%c\n\n", piece->c);
 }

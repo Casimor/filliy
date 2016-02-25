@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 16:00:44 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/23 17:12:21 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 17:32:45 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_structure_fillit(t_fillit *fillit)
 	fillit->pieces = NULL;
 }
 
-void	init_sequence_fillit(int ac, char **av, t_fillit *fillit)
+void	init_sequence(int ac, char **av, t_fillit *fillit)
 {
 	int		fd;
 	char	*pieces;
@@ -46,7 +46,17 @@ void	init_sequence_fillit(int ac, char **av, t_fillit *fillit)
 		set_error_quit("Open error", fillit);
 }
 
-//void	launch_sequence(t_fillit *fillit){}
+void	launch_sequence(t_fillit *fillit)
+{
+	t_map	map;
+	int		len;
+
+	len = get_size_square_theoretic(fillit->nb_piece);
+	while (!solve_square(&map, fillit, len))
+		len++;
+	print_map(map);
+	free_map(map);
+}
 
 void	free_fillit(t_fillit *fillit)
 {

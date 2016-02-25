@@ -6,7 +6,7 @@
 #    By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/02/23 16:21:56 by lfouquet         ###   ########.fr        #
+#    Updated: 2016/02/25 16:23:57 by lfouquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,9 @@ SRC					=	main.c				\
 						check_file.c		\
 						opt_check.c			\
 						sequence.c			\
-						create_piece.c
+						create_piece.c		\
+						piece_tools.c		\
+						map.c
 
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/23 17:18:21 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/02/25 17:25:07 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,17 @@ typedef struct		s_piece
 	struct s_piece	*next;
 }					t_piece;
 
+typedef struct		s_map
+{
+	int				len;
+	char			**map;
+}					t_map;
+
 /*
 ** main.c
 */
 void	print_pieces(t_piece *pieces);
+void	print_piece(t_piece *piece, int num);
 
 /*
 **	create_piece.c
@@ -57,6 +64,21 @@ void	print_pieces(t_piece *pieces);
 t_piece *create_piece(char *str, int value);
 void	set_pos_part_piece(char *str, t_piece **piece);
 t_pos	calc_pos_part(int x);
+//Ailleurs
+int		get_size_square_theoretic(int nb);
+
+/*
+**	piece_tool.c
+*/
+int		put_piece(char **t, t_piece *piece, t_pos pos, int len);
+
+/*
+**	map.c
+*/
+t_map	init_map(int len);
+char	*init_value_line_map(char *line, int len);
+void	print_map(t_map map);
+void	free_map(t_map map);
 
 
 /*
@@ -84,7 +106,7 @@ void	add_piece_end(t_piece **first, t_piece *piece);
 **	sequence.c
 */
 void	init_structure_fillit(t_fillit *fillit);
-void	init_sequence_fillit(int ac, char **av, t_fillit *fillit);
+void	init_sequence(int ac, char **av, t_fillit *fillit);
 void	launch_sequence(t_fillit *fillit);
 void	free_fillit(t_fillit *fillit);
 void	set_error_quit(char *str, t_fillit *fillit);
