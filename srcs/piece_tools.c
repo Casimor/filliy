@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 15:05:02 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/25 19:22:11 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/02 16:49:13 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,13 @@ int	check_pos_part_piece(t_pos pos, t_pos part, t_pos p1, t_map map)
 
 void	do_put_piece(t_map	**map, t_piece *piece, t_pos pos)
 {
-	printf("p1: x->%d, y->%d\n", pos.x + piece->p1.x, pos.y + piece->p1.y);
-	(*map)->map[pos.x + piece->p1.x - 2][pos.y + piece->p1.y - 2] = piece->c;
+	printf("p1: x->%d, y->%d\n", pos.x ,pos.y);
+	printf("p2: x->%d, y->%d\n", pos.x + piece->p2.x, pos.y + piece->p2.y);
+	printf("p3: x->%d, y->%d\n", pos.x + piece->p3.x, pos.y + piece->p3.y);
+	printf("p4: x->%d, y->%d\n", pos.x + piece->p4.x, pos.y + piece->p4.y);
+
+	//(*map)->map[pos.x + piece->p1.x - 2][pos.y + piece->p1.y - 2] = piece->c;
+	(*map)->map[pos.x - 1][pos.y - 1] = piece->c;
 	(*map)->map[pos.x + piece->p2.x - 2][pos.y + piece->p2.y - 2] = piece->c;
 	(*map)->map[pos.x + piece->p3.x - 2][pos.y + piece->p3.y - 2] = piece->c;
 	(*map)->map[pos.x + piece->p4.x - 2][pos.y + piece->p4.y - 2] = piece->c;
