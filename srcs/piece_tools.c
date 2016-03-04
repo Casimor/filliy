@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 15:05:02 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/02 16:49:13 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/04 19:07:21 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,25 @@
 
 int		can_put_piece(t_map map, t_piece *piece, t_pos pos)
 {
-	if (map.map[pos.x][pos.y] != '.')
+	pos.x -= 1;
+	pos.y -= 1;
+	if (map.map[pos.y][pos.x] != '.')
+	{
+		//printf("case prise ma guewule\n");
 		return (0);
-	printf("p1 ok\n");
+	}
+	if (piece->width + pos.x > map.len || piece->height + pos.y  > map.len)
+		return (0);
+	//printf("p1 ok\n");
 	if (!check_pos_part_piece(pos, piece->p2, piece->p1, map))
 		return (0);
-	printf("p2 ok\n");
+	//printf("p2 ok\n");
 	if (!check_pos_part_piece(pos, piece->p3, piece->p1, map))
 		return (0);
-	printf("p3 ok\n");
+	//printf("p3 ok\n");
 	if (!check_pos_part_piece(pos, piece->p4, piece->p1, map))
 		return (0);
-	printf("p4 ok\n");
+	//printf("p4 ok\n");
 	return (1);
 }
 
@@ -35,32 +42,33 @@ int	check_pos_part_piece(t_pos pos, t_pos part, t_pos p1, t_map map)
 
 	tmp.x = part.x - p1.x;
 	tmp.y = part.y - p1.y;
+	//printf("valeur crocher [%d][%d] et taille map ->%d\n",pos.y + tmp.y, pos.x + tmp.x, map.len);
 	if (pos.x + tmp.x < 0 || pos.x + tmp.x > map.len)
 	{
-		printf("x ->%d\n", pos.x + tmp.x);
-		printf("de passement\n");
+		//printf("x ->%d\n", pos.x + tmp.x);
+		//printf("de passement\n");
 		return (0);
 	}
 	else if (pos.y + tmp.y < 0 || pos.y + tmp.y > map.len)
+	{
+		//printf("depassement sur y\n");
 		return (0);
-	else if (map.map[pos.x + tmp.x][pos.y + tmp.y] != '.')
+	}
+	else if (map.map[pos.y + tmp.y][pos.x + tmp.x] != '.')
+	{
 		return (0);
+	}
 	else
 		return (1);
 }
 
 void	do_put_piece(t_map	**map, t_piece *piece, t_pos pos)
 {
-	printf("p1: x->%d, y->%d\n", pos.x ,pos.y);
-	printf("p2: x->%d, y->%d\n", pos.x + piece->p2.x, pos.y + piece->p2.y);
-	printf("p3: x->%d, y->%d\n", pos.x + piece->p3.x, pos.y + piece->p3.y);
-	printf("p4: x->%d, y->%d\n", pos.x + piece->p4.x, pos.y + piece->p4.y);
-
-	//(*map)->map[pos.x + piece->p1.x - 2][pos.y + piece->p1.y - 2] = piece->c;
-	(*map)->map[pos.x - 1][pos.y - 1] = piece->c;
-	(*map)->map[pos.x + piece->p2.x - 2][pos.y + piece->p2.y - 2] = piece->c;
-	(*map)->map[pos.x + piece->p3.x - 2][pos.y + piece->p3.y - 2] = piece->c;
-	(*map)->map[pos.x + piece->p4.x - 2][pos.y + piece->p4.y - 2] = piece->c;
+	(*map)->map[pos.y - 1][pos.x - 1] = piece->c;
+	(*map)->map[pos.y + piece->p2.y - 2][pos.x + piece->p2.x - 2] = piece->c;
+	(*map)->map[pos.y + piece->p3.y - 2][pos.x + piece->p3.x - 2] = piece->c;
+	(*map)->map[pos.y + piece->p4.y - 2][pos.x + piece->p4.x - 2] = piece->c;
+	
 }
 
 int		all_pieces_puted(t_piece *piece)
@@ -72,4 +80,13 @@ int		all_pieces_puted(t_piece *piece)
 		piece = piece->next;
 	}
 	return (1);
+}
+
+t_pos	init_pos(int x, int y)
+{
+	t_pos	pos;
+
+	pos.x = x;
+	pos.y = y;
+	return (pos);
 }

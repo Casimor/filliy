@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:59:50 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/25 18:37:42 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/04 18:11:57 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ t_piece *create_piece(char *str, int value)
 	piece->next = NULL;
 	piece->c = 'A' + value;
 	piece->put = 0;
+	set_width_height_piece(&piece);
 	return (piece);
 }
 
@@ -54,6 +55,31 @@ void	set_pos_part_piece(char *str, t_piece **piece)
 		}
 		i++;
 	}
+}
+
+void	set_width_height_piece(t_piece **piece)
+{
+	int	max;
+	int	min;
+
+	min = (*piece)->p1.x;
+	min = (min > (*piece)->p2.x) ? (*piece)->p2.x : min;
+	min = (min > (*piece)->p3.x) ? (*piece)->p3.x : min;
+	min = (min > (*piece)->p4.x) ? (*piece)->p4.x : min;
+	max = (*piece)->p1.x;
+	max = (max < (*piece)->p2.x) ? (*piece)->p2.x : max;
+	max = (max < (*piece)->p3.x) ? (*piece)->p3.x : max;
+	max = (max < (*piece)->p4.x) ? (*piece)->p4.x : max;
+	(*piece)->width = max - min + 1;
+	min = (*piece)->p1.x;
+	min = (min > (*piece)->p2.y) ? (*piece)->p2.y : min;
+	min = (min > (*piece)->p3.y) ? (*piece)->p3.y : min;
+	min = (min > (*piece)->p4.y) ? (*piece)->p4.y : min;
+	max = (*piece)->p1.x;
+	max = (max < (*piece)->p2.y) ? (*piece)->p2.y : max;
+	max = (max < (*piece)->p3.y) ? (*piece)->p3.y : max;
+	max = (max < (*piece)->p4.y) ? (*piece)->p4.y : max;
+	(*piece)->height = max - min + 1;
 }
 
 t_pos	calc_pos_part(int x)

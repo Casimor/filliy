@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:50:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/25 19:10:03 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/04 19:09:56 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int				main(int ac, char **av)
 	init_structure_fillit(&fillit);
 	init_sequence(--ac, av, &fillit);
 	print_pieces(fillit.pieces);
-	launch_sequence(&fillit);
+	//launch_sequence(&fillit);
 	free_fillit(&fillit);
 	return (0);
 }
@@ -43,5 +43,6 @@ void	print_piece(t_piece *piece, int num)
 	printf("--- p2: x->%d, y->%d\n", piece->p2.x, piece->p2.y);
 	printf("--- p3: x->%d, y->%d\n", piece->p3.x, piece->p3.y);
 	printf("--- p4: x->%d, y->%d\n", piece->p4.x, piece->p4.y);
-	printf("----- valeur de la lettre ->%c\n\n", piece->c);
+	printf("----- valeur de la lettre ->%c\n", piece->c);
+	printf("width ->%d et height ->%d\n", piece->width, piece->height);
 }

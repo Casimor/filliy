@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/25 18:48:51 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/04 18:08:43 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct		s_piece
 	t_pos			p4;
 	char			c;
 	int				put;
+	int				width;
+	int				height;
 	struct s_piece	*next;
 }					t_piece;
 
@@ -65,6 +67,7 @@ void	print_piece(t_piece *piece, int num);
 t_piece *create_piece(char *str, int value);
 void	set_pos_part_piece(char *str, t_piece **piece);
 t_pos	calc_pos_part(int x);
+void	set_width_height_piece(t_piece **piece);
 //Ailleurs
 int		get_size_square_theoretic(int nb);
 
@@ -75,12 +78,14 @@ int		can_put_piece(t_map map, t_piece *piece, t_pos pos);
 int		check_pos_part_piece(t_pos pos, t_pos part, t_pos p1, t_map map);
 void	do_put_piece(t_map	**map, t_piece *piece, t_pos pos);
 int		all_pieces_puted(t_piece *piece);
+t_pos	init_pos(int x, int y);
 
 /*
 **	solve_map.c
 */
-int	solve_square(t_map *map, t_fillit *fillit, int len);
-int	go_solve1(t_map	*map, t_fillit **fillit);
+int		solve_square(t_map *map, t_fillit *fillit, int len);
+int		solve2(t_map	*map, t_piece *piece);
+int		set_next_pos(t_map *map, t_pos *pos);
 
 /*
 **	map.c
@@ -89,7 +94,7 @@ t_map	init_map(int len);
 char	*init_value_line_map(char *line, int len);
 void	print_map(t_map map);
 void	free_map(t_map map);
-t_pos	get_first_pos_map(t_map map);
+int		set_pos_free(t_map map, t_pos *pos);
 
 
 /*

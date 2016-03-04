@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:26:25 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/02/25 19:19:28 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/04 19:07:56 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	solve_square(t_map *map, t_fillit *fillit, int len)
 {
 	*map = init_map(len);
 
-	if (go_solve1(map, &fillit))
+	if (solve2(map, fillit->pieces))
 		return (1);
 	else
 	{
@@ -26,34 +26,59 @@ int	solve_square(t_map *map, t_fillit *fillit, int len)
 	}
 }
 
-int	go_solve1(t_map	*map, t_fillit **fillit)
+int	solve2(t_map *map, t_piece *piece)
 {
-	t_piece	*tmp;
-	t_pos	pos;
+	t_pos		pos;
+	t_piece		*tmp;
 
-	tmp = (*fillit)->pieces;
-	while ((*fillit)->pieces)
+	pos = init_pos(1, 1);
+	tmp = piece;
+	if (!tmp)
+		return (1);
+	while (set_pos_free(*map, &pos))
 	{
-		pos = get_first_pos_map(*map);
-		printf("Premier case libre: x->%d, y->%d\n", pos.x, pos.y);
-		if (can_put_piece(*map, (*fillit)->pieces, pos))
+		if (!tmp)
+			printf("alerte\n");
+		//printf("Try Piece %c, en [%d]/[%d]\n", tmp->c, pos.y - 1, pos.x - 1);
+		if (can_put_piece(*map, tmp, pos))
 		{
+			do_put_piece(&map, tmp, pos);
 			print_map(*map);
-			do_put_piece(&map, (*fillit)->pieces, pos);
-			printf("une piece de mise ->%c\n", (*fillit)->pieces->c);
-			print_map(*map);
-			(*fillit)->pieces->put = 1;
+			//printf("Piece %c, placé en [%d]/[%d]\n", tmp->c, pos.y - 1, pos.x - 1);
+			//(*fillit)->pieces->put = 1;
+			tmp = tmp->next;
+			if (!tmp)
+				return (1);
+			if (solve2(map, tmp))
+				return (1);
+
 		}
 		else
-			printf("impossible de mettre la piece en x->%d, y->%d\n", pos.x, pos.y);
-		(*fillit)->pieces = (*fillit)->pieces->next;
+		{
+			set_next_pos(map, &pos);
+			//printf("nouvelle pos trouve ->[%d][%d]\n", pos.y - 1, pos.x - 1);
+		}
 	}
-	(*fillit)->pieces = tmp;
-	if (all_pieces_puted(tmp))
-	{
-		printf("toute les pieces ont ete mise\n");
+	printf("plus de PLACE dans la PLACE\n");
+	if (!tmp)
 		return (1);
+	else
+	{
+		printf("piece perdu ->%c\n", piece->c);
+		return (0);
+	}
+}
+
+int		set_next_pos(t_map *map, t_pos *pos)
+{
+	if (pos->x == map->len)
+	{
+		pos->x = 1;
+		if (pos->y == map->len)
+			return (0);
+		pos->y++;
 	}
 	else
-		return (0);
+		pos->x++;
+	return (1);
 }
