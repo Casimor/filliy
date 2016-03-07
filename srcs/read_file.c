@@ -6,13 +6,13 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:17:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/23 17:11:08 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 19:38:19 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void		replace_char(char **tab_piece)
+void	replace_char(char **tab_piece)
 {
 	int		i;
 	int		j;
@@ -34,7 +34,7 @@ void		replace_char(char **tab_piece)
 	}
 }
 
-char		**split_pieces(char *pieces)
+char	**split_pieces(char *pieces)
 {
 	char	**tab_piece;
 	int		i;
@@ -101,39 +101,7 @@ int		get_pieces(char *pieces, t_piece **piece)
 	}
 }
 
-t_piece	*format_pieces_from_char(char **tab, int nb)
-{
-	int	i;
-	t_piece		*piece;
-
-	i = 0;
-	piece = NULL;
-	while (i < nb)
-	{
-		add_piece_end(&piece, create_piece(tab[i], i));
-		i++;
-	}
-	return (piece);
-}
-
-
-
-void	add_piece_end(t_piece **first, t_piece *piece)
-{
-	t_piece	*tmp;
-
-	tmp = *first;
-	if (!tmp)
-		*first = piece;
-	else
-	{
-		while (tmp->next)
-			tmp = tmp->next;
-		tmp->next = piece;
-	}
-}
-
-int	get_file(int fd, char **pieces)
+int		get_file(int fd, char **pieces)
 {
 	char		buf[BUFF_SIZE + 1];
 	ssize_t		ret;

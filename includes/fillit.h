@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/07 15:43:27 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 16:10:41 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,10 @@ int		solve2(t_map	*map, t_piece *piece);
 int		set_next_pos(t_map *map, t_pos *pos);
 
 /*
+**	solve3.c
+*/
+
+/*
 **	map.c
 */
 t_map	init_map(int len);
@@ -96,6 +100,7 @@ char	*init_value_line_map(char *line, int len);
 void	print_map(t_map map);
 void	free_map(t_map map);
 int		set_pos_free(t_map map, t_pos *pos);
+void	delete_piece_map(t_map *map, char c);
 
 
 /*

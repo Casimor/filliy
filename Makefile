@@ -6,7 +6,7 @@
 #    By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/02/25 17:49:58 by lfouquet         ###   ########.fr        #
+#    Updated: 2016/03/07 19:45:51 by lfouquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRC					=	main.c				\
 						create_piece.c		\
 						piece_tools.c		\
 						map.c				\
-						solve_map.c
+						solve_map.c			\
+						piece_tools2.c
 
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

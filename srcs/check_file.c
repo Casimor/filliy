@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/28 15:46:02 by bchevali          #+#    #+#             */
-/*   Updated: 2016/02/22 18:18:56 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 19:31:31 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ int		check_char(char *piece)
 	return (1);
 }
 
-int				check_pieces(char **tab_piece)
+int		check_pieces(char **tab_piece)
 {
 	int		i;
 

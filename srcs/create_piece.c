@@ -6,13 +6,13 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:59:50 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 15:28:37 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 19:36:54 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_piece *create_piece(char *str, int value)
+t_piece	*create_piece(char *str, int value)
 {
 	t_piece	*piece;
 
@@ -60,7 +60,7 @@ void	init_pos_part_piece(char *str, t_piece **piece)
 	}
 }
 
-void set_pos_part_piece(t_piece **piece)
+void	set_pos_part_piece(t_piece **piece)
 {
 	(*piece)->p2.x -= (*piece)->p1.x;
 	(*piece)->p2.y -= (*piece)->p1.y;
@@ -70,8 +70,6 @@ void set_pos_part_piece(t_piece **piece)
 	(*piece)->p4.y -= (*piece)->p1.y;
 	(*piece)->p1.x = 0;
 	(*piece)->p1.y = 0;
-
-
 }
 
 void	set_width_height_piece(t_piece **piece)
@@ -103,25 +101,7 @@ t_pos	calc_pos_part(int x)
 {
 	t_pos	part;
 
-	// part.x = (x <= 4) ? x : (x % 4);
 	part.x = !(x % 4) ? 4 : (x % 4);
-	//part.y = (x / 5) + 1;
 	part.y = !(x % 4) ? x / 4 : x / 4 + 1;
-
 	return (part);
-}
-
-int	get_size_square_theoretic(int nb)
-{
-	int	size;
-	int	i;
-
-	i = 4;
-	size = nb * 4;
-	while (42)
-	{
-		if (size <= i * i)
-			return (i);
-		i++;
-	}
 }
