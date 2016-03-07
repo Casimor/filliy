@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:59:50 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 19:36:54 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 19:59:13 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ t_piece	*create_piece(char *str, int value)
 	}
 	piece->next = NULL;
 	piece->c = 'A' + value;
-	piece->put = 0;
 	set_width_height_piece(&piece);
 	return (piece);
 }

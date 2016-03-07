@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 19:38:58 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 19:46:43 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 20:01:43 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int		get_size_square_theoretic(int nb)
 
 t_piece	*format_pieces_from_char(char **tab, int nb)
 {
-	int	i;
+	int			i;
 	t_piece		*piece;
 
 	i = 0;
