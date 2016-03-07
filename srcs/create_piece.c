@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:59:50 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/04 18:11:57 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:28:37 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ t_piece *create_piece(char *str, int value)
 	if (!piece)
 		return (NULL);
 	else
-		set_pos_part_piece(str, &piece);
+	{
+		init_pos_part_piece(str, &piece);
+		set_pos_part_piece(&piece);
+	}
 	piece->next = NULL;
 	piece->c = 'A' + value;
 	piece->put = 0;
@@ -28,7 +31,7 @@ t_piece *create_piece(char *str, int value)
 	return (piece);
 }
 
-void	set_pos_part_piece(char *str, t_piece **piece)
+void	init_pos_part_piece(char *str, t_piece **piece)
 {
 	int	i;
 	int	j;
@@ -57,6 +60,20 @@ void	set_pos_part_piece(char *str, t_piece **piece)
 	}
 }
 
+void set_pos_part_piece(t_piece **piece)
+{
+	(*piece)->p2.x -= (*piece)->p1.x;
+	(*piece)->p2.y -= (*piece)->p1.y;
+	(*piece)->p3.x -= (*piece)->p1.x;
+	(*piece)->p3.y -= (*piece)->p1.y;
+	(*piece)->p4.x -= (*piece)->p1.x;
+	(*piece)->p4.y -= (*piece)->p1.y;
+	(*piece)->p1.x = 0;
+	(*piece)->p1.y = 0;
+
+
+}
+
 void	set_width_height_piece(t_piece **piece)
 {
 	int	max;
@@ -71,11 +88,11 @@ void	set_width_height_piece(t_piece **piece)
 	max = (max < (*piece)->p3.x) ? (*piece)->p3.x : max;
 	max = (max < (*piece)->p4.x) ? (*piece)->p4.x : max;
 	(*piece)->width = max - min + 1;
-	min = (*piece)->p1.x;
+	min = (*piece)->p1.y;
 	min = (min > (*piece)->p2.y) ? (*piece)->p2.y : min;
 	min = (min > (*piece)->p3.y) ? (*piece)->p3.y : min;
 	min = (min > (*piece)->p4.y) ? (*piece)->p4.y : min;
-	max = (*piece)->p1.x;
+	max = (*piece)->p1.y;
 	max = (max < (*piece)->p2.y) ? (*piece)->p2.y : max;
 	max = (max < (*piece)->p3.y) ? (*piece)->p3.y : max;
 	max = (max < (*piece)->p4.y) ? (*piece)->p4.y : max;
@@ -86,8 +103,11 @@ t_pos	calc_pos_part(int x)
 {
 	t_pos	part;
 
-	part.x = (x <= 4) ? x : (x % 4);
-	part.y = (x / 5) + 1;
+	// part.x = (x <= 4) ? x : (x % 4);
+	part.x = !(x % 4) ? 4 : (x % 4);
+	//part.y = (x / 5) + 1;
+	part.y = !(x % 4) ? x / 4 : x / 4 + 1;
+
 	return (part);
 }
 
@@ -96,7 +116,7 @@ int	get_size_square_theoretic(int nb)
 	int	size;
 	int	i;
 
-	i = 2;
+	i = 4;
 	size = nb * 4;
 	while (42)
 	{

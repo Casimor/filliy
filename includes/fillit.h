@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/04 18:08:43 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:43:27 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,8 @@ void	print_piece(t_piece *piece, int num);
 **	create_piece.c
 */
 t_piece *create_piece(char *str, int value);
-void	set_pos_part_piece(char *str, t_piece **piece);
+void	init_pos_part_piece(char *str, t_piece **piece);
+void 	set_pos_part_piece(t_piece **piece);
 t_pos	calc_pos_part(int x);
 void	set_width_height_piece(t_piece **piece);
 //Ailleurs
@@ -75,7 +76,7 @@ int		get_size_square_theoretic(int nb);
 **	piece_tool.c
 */
 int		can_put_piece(t_map map, t_piece *piece, t_pos pos);
-int		check_pos_part_piece(t_pos pos, t_pos part, t_pos p1, t_map map);
+int		check_pos_part_piece(t_pos pos, t_pos part, t_map map);
 void	do_put_piece(t_map	**map, t_piece *piece, t_pos pos);
 int		all_pieces_puted(t_piece *piece);
 t_pos	init_pos(int x, int y);

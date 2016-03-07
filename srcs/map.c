@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 16:17:04 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/04 19:04:21 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:45:33 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	print_map(t_map map)
 		ft_putchar('\n');
 		i++;
 	}
+	ft_putchar('\n');
 }
 
 void	free_map(t_map map)

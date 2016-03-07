@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 17:26:25 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/04 19:07:56 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/07 15:53:22 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	solve2(t_map *map, t_piece *piece)
 		else
 		{
 			set_next_pos(map, &pos);
-			//printf("nouvelle pos trouve ->[%d][%d]\n", pos.y - 1, pos.x - 1);
+			printf("nouvelle pos trouve ->[%d][%d]\n", pos.y - 1, pos.x - 1);
 		}
 	}
 	printf("plus de PLACE dans la PLACE\n");
