@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 16:00:44 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 19:33:38 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/09 15:17:44 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	init_sequence(int ac, char **av, t_fillit *fillit)
 			else
 			{
 				free(pieces);
-				set_error_quit("error pieces", fillit);
+				set_error_quit("error", fillit);
 			}
 			free(pieces);
 		}

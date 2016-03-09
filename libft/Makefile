@@ -121,7 +121,7 @@ $(NAME): $(OBJ)
 
 $(OBJ): $(SRC)
 		@echo "\n\033[36m[Compiling: $(NAME)]\033[0m"
-		@gcc -c $(SRC) $(FLAGS) libft.h
+		@gcc -c $(SRC) $(FLAGS) -I.
 
 clean:
 		@echo "\n\033[35m[Cleaning: $(NAME)]\033[0m"
