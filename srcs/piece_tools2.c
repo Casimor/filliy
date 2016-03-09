@@ -6,13 +6,14 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/07 19:38:58 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 20:01:43 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/09 18:41:18 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
-int		set_pos_free(t_map map, t_pos *pos)
+int		set_pos_free(t_map map, t_pos *pos, int height)
 {
 	int	i;
 	int	j;
@@ -23,15 +24,17 @@ int		set_pos_free(t_map map, t_pos *pos)
 		return (0);
 	while (i < map.len)
 	{
+		if (i + height > map.len)
+			return (0);
 		while (j < map.len)
-		{
+		{	
 			if (map.map[i][j] == '.')
 			{
 				pos->x = j + 1;
 				pos->y = i + 1;
 				return (1);
 			}
-			j++;
+			++j;
 		}
 		j = 0;
 		i++;

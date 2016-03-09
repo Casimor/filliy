@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:59:50 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 19:59:13 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/09 16:49:13 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_piece	*create_piece(char *str, int value)
 	}
 	piece->next = NULL;
 	piece->c = 'A' + value;
-	set_width_height_piece(&piece);
+	set_height_piece(&piece);
 	return (piece);
 }
 
@@ -71,20 +71,11 @@ void	set_pos_part_piece(t_piece **piece)
 	(*piece)->p1.y = 0;
 }
 
-void	set_width_height_piece(t_piece **piece)
+void	set_height_piece(t_piece **piece)
 {
 	int	max;
 	int	min;
 
-	min = (*piece)->p1.x;
-	min = (min > (*piece)->p2.x) ? (*piece)->p2.x : min;
-	min = (min > (*piece)->p3.x) ? (*piece)->p3.x : min;
-	min = (min > (*piece)->p4.x) ? (*piece)->p4.x : min;
-	max = (*piece)->p1.x;
-	max = (max < (*piece)->p2.x) ? (*piece)->p2.x : max;
-	max = (max < (*piece)->p3.x) ? (*piece)->p3.x : max;
-	max = (max < (*piece)->p4.x) ? (*piece)->p4.x : max;
-	(*piece)->width = max - min + 1;
 	min = (*piece)->p1.y;
 	min = (min > (*piece)->p2.y) ? (*piece)->p2.y : min;
 	min = (min > (*piece)->p3.y) ? (*piece)->p3.y : min;

@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/07 20:05:42 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/09 18:23:20 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct		s_piece
 	t_pos			p4;
 	char			c;
 	int				put;
-	int				width;
 	int				height;
 	struct s_piece	*next;
 }					t_piece;
@@ -64,21 +63,20 @@ t_piece				*create_piece(char *str, int value);
 void				init_pos_part_piece(char *str, t_piece **piece);
 void				set_pos_part_piece(t_piece **piece);
 t_pos				calc_pos_part(int x);
-void				set_width_height_piece(t_piece **piece);
+void				set_height_piece(t_piece **piece);
 
 /*
 **	piece_tools.c
 */
 int					can_put_piece(t_map map, t_piece *piece, t_pos pos);
 int					check_pos_part_piece(t_pos pos, t_pos part, t_map map);
-void				do_put_piece(t_map	**map, t_piece *piece, t_pos pos);
-int					all_pieces_puted(t_piece *piece);
+void				do_put_piece(t_map	*map, t_piece *piece, t_pos pos);
 t_pos				init_pos(int x, int y);
 
 /*
 **	piece_tools2.c
 */
-int					set_pos_free(t_map map, t_pos *pos);
+int					set_pos_free(t_map map, t_pos *pos, int height);
 int					get_size_square_theoretic(int nb);
 t_piece				*format_pieces_from_char(char **tab, int nb);
 void				add_piece_end(t_piece **first, t_piece *piece);
@@ -87,8 +85,8 @@ void				add_piece_end(t_piece **first, t_piece *piece);
 **	solve_map.c
 */
 int					solve_square(t_map *map, t_fillit *fillit, int len);
-int					solve2(t_map	*map, t_piece *piece);
-int					set_next_pos(t_map *map, t_pos *pos);
+int					solve2(t_map *map, t_piece *piece);
+void				set_next_pos(t_map map, t_pos *pos);
 
 /*
 **	map.c
@@ -97,7 +95,7 @@ t_map				init_map(int len);
 char				*init_value_line_map(char *line, int len);
 void				print_map(t_map map);
 void				free_map(t_map map);
-void				delete_piece_map(t_map *map, char c);
+void				delete_piece_map(t_map *map, char c, t_pos pos);
 
 /*
 **	check_file.c

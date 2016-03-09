@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 16:17:04 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 19:32:08 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/09 18:21:05 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,22 +62,22 @@ void	print_map(t_map map)
 	ft_putchar('\n');
 }
 
-void	delete_piece_map(t_map *map, char c)
+void	delete_piece_map(t_map *map, char c, t_pos pos)
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
+	i = pos.y - 1;
+	j = pos.x - 1;
 	while (i < map->len)
 	{
-		j = 0;
 		while (map->map[i][j])
 		{
 			if (map->map[i][j] == c)
 				map->map[i][j] = '.';
 			j++;
 		}
+		j = 0;
 		i++;
 	}
 }

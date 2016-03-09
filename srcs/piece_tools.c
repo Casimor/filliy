@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/25 15:05:02 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/07 19:36:10 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/09 18:15:43 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,23 +38,12 @@ int		check_pos_part_piece(t_pos pos, t_pos part, t_map map)
 	return (1);
 }
 
-void	do_put_piece(t_map **map, t_piece *piece, t_pos pos)
+void	do_put_piece(t_map *map, t_piece *piece, t_pos pos)
 {
-	(*map)->map[pos.y - 1][pos.x - 1] = piece->c;
-	(*map)->map[pos.y + piece->p2.y - 1][pos.x + piece->p2.x - 1] = piece->c;
-	(*map)->map[pos.y + piece->p3.y - 1][pos.x + piece->p3.x - 1] = piece->c;
-	(*map)->map[pos.y + piece->p4.y - 1][pos.x + piece->p4.x - 1] = piece->c;
-}
-
-int		all_pieces_puted(t_piece *piece)
-{
-	while (piece)
-	{
-		if (piece->put == 0)
-			return (0);
-		piece = piece->next;
-	}
-	return (1);
+	map->map[pos.y - 1][pos.x - 1] = piece->c;
+	map->map[pos.y + piece->p2.y - 1][pos.x + piece->p2.x - 1] = piece->c;
+	map->map[pos.y + piece->p3.y - 1][pos.x + piece->p3.x - 1] = piece->c;
+	map->map[pos.y + piece->p4.y - 1][pos.x + piece->p4.x - 1] = piece->c;
 }
 
 t_pos	init_pos(int x, int y)
