@@ -3,29 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   sequence.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 16:00:44 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/09 15:17:44 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/10 15:43:46 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	init_structure_fillit(t_fillit *fillit)
-{
-	fillit->nb_piece = 0;
-	fillit->pieces = NULL;
-}
-
-void	init_sequence(int ac, char **av, t_fillit *fillit)
+void	init_sequence(char **av, t_fillit *fillit)
 {
 	int		fd;
 	char	*pieces;
 
 	pieces = NULL;
-	if (ac != 1)
-		set_error_quit(USAGE, fillit);
 	if ((fd = open(av[1], O_RDONLY)) != -1)
 	{
 		if (get_file(fd, &pieces))
@@ -40,10 +32,10 @@ void	init_sequence(int ac, char **av, t_fillit *fillit)
 			free(pieces);
 		}
 		else
-			set_error_quit("Read error", fillit);
+			set_error_quit("error", fillit);
 	}
 	else
-		set_error_quit("Open error", fillit);
+		set_error_quit("error", fillit);
 }
 
 void	launch_sequence(t_fillit *fillit)
@@ -75,10 +67,9 @@ void	free_fillit(t_fillit *fillit)
 	}
 }
 
-void	set_error_quit(char *str, t_fillit *fillit)
+void	set_error_quit(t_fillit *fillit)
 {
-	if (str)
-		ft_putendl(str);
+	ft_putendl_fd("error", 2);
 	free_fillit(fillit);
 	exit(0);
 }

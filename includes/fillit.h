@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/09 18:23:20 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/10 15:30:16 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 # include <sys/uio.h>
 # include <sys/types.h>
 # include "../libft/libft.h"
-
-# define USAGE 		"usage: ./fillit <File>"
 
 typedef struct		s_fillit
 {
@@ -51,10 +49,10 @@ typedef struct		s_map
 }					t_map;
 
 /*
-** main.c
+** fillit.c
 */
-void				print_pieces(t_piece *pieces);
-void				print_piece(t_piece *piece, int num);
+void				fillit(char **av);
+
 
 /*
 **	create_piece.c
@@ -118,8 +116,7 @@ int					get_file(int fd, char **pieces);
 /*
 **	sequence.c
 */
-void				init_structure_fillit(t_fillit *fillit);
-void				init_sequence(int ac, char **av, t_fillit *fillit);
+void				init_sequence(char **av, t_fillit *fillit);
 void				launch_sequence(t_fillit *fillit);
 void				free_fillit(t_fillit *fillit);
 void				set_error_quit(char *str, t_fillit *fillit);

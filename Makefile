@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+         #
+#    By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/03/09 15:24:36 by lfouquet         ###   ########.fr        #
+#    Updated: 2016/03/10 15:21:13 by bchevali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,8 @@ SRC					=	main.c				\
 						piece_tools.c		\
 						map.c				\
 						solve_map.c			\
-						piece_tools2.c
+						piece_tools2.c		\
+						fillit.c
 
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 

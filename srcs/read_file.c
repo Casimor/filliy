@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 16:17:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/07 19:38:19 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/10 15:32:56 by bchevali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,17 +96,16 @@ int		get_pieces(char *pieces, t_piece **piece)
 	else
 	{
 		ft_free_tab(tab_piece);
-		ft_putendl_fd("error", 2);
 		return (0);
 	}
 }
 
 int		get_file(int fd, char **pieces)
 {
-	char		buf[BUFF_SIZE + 1];
-	ssize_t		ret;
 	int			i;
+	ssize_t		ret;
 	char		*tmp;
+	char		buf[BUFF_SIZE + 1];
 
 	i = 0;
 	tmp = NULL;
