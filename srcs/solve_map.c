@@ -41,19 +41,19 @@ int		solve2(t_map *map, t_piece *piece)
 			else
 				delete_piece_map(map, piece->c, pos);
 		}
-		set_next_pos(*map, &pos);
+		set_next_pos(map->len, &pos);
 	}
 	return (0);
 }
 
-void	set_next_pos(t_map map, t_pos *pos)
+void	set_next_pos(int len, t_pos *pos)
 {
-	if (pos->x == map.len && pos->y == map.len)
+	if (pos->x == len && pos->y == len)
 		return;
-	if (pos->x == map.len)
+	if (pos->x == len)
 	{
 		pos->x = 1;
-		if (pos->y == map.len)
+		if (pos->y == len)
 			return;
 		pos->y++;
 	}

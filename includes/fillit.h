@@ -37,8 +37,7 @@ typedef struct		s_piece
 	t_pos			p3;
 	t_pos			p4;
 	char			c;
-	int				put;
-	int				height;
+	struct	s_size	size;
 	struct s_piece	*next;
 }					t_piece;
 
@@ -47,6 +46,13 @@ typedef struct		s_map
 	int				len;
 	char			**map;
 }					t_map;
+
+typedef struct		s_size
+{
+	int				height;
+	int				width;
+	int				diff_width;
+}					t_size;
 
 /*
 ** fillit.c
@@ -61,7 +67,10 @@ t_piece				*create_piece(char *str, int value);
 void				init_pos_part_piece(char *str, t_piece **piece);
 void				set_pos_part_piece(t_piece **piece);
 t_pos				calc_pos_part(int x);
+void				set_size_piece(t_piece **piece);
 void				set_height_piece(t_piece **piece);
+void				set_width_piece(t_piece **piece);
+void				set_diff_width_piece(t_piece **piece);
 
 /*
 **	piece_tools.c
@@ -84,7 +93,7 @@ void				add_piece_end(t_piece **first, t_piece *piece);
 */
 int					solve_square(t_map *map, t_fillit *fillit, int len);
 int					solve2(t_map *map, t_piece *piece);
-void				set_next_pos(t_map map, t_pos *pos);
+void				set_next_pos(int len, t_pos *pos);
 
 /*
 **	map.c
