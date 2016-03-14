@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sequence.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 16:00:44 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/10 15:43:46 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/14 12:09:32 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@ void	init_sequence(char **av, t_fillit *fillit)
 			else
 			{
 				free(pieces);
-				set_error_quit("error", fillit);
+				set_error_quit(fillit);
 			}
 			free(pieces);
 		}
 		else
-			set_error_quit("error", fillit);
+			set_error_quit(fillit);
 	}
 	else
-		set_error_quit("error", fillit);
+		set_error_quit(fillit);
 }
 
 void	launch_sequence(t_fillit *fillit)
@@ -69,7 +69,7 @@ void	free_fillit(t_fillit *fillit)
 
 void	set_error_quit(t_fillit *fillit)
 {
-	ft_putendl_fd("error", 2);
+	ft_putendl_fd("error", 1);
 	free_fillit(fillit);
 	exit(0);
 }

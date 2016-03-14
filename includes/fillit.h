@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:52:17 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/10 15:30:16 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/14 12:00:56 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ typedef struct		s_piece
 	t_pos			p3;
 	t_pos			p4;
 	char			c;
-	struct	s_size	size;
+	int				height;
 	struct s_piece	*next;
 }					t_piece;
 
@@ -47,18 +47,10 @@ typedef struct		s_map
 	char			**map;
 }					t_map;
 
-typedef struct		s_size
-{
-	int				height;
-	int				width;
-	int				diff_width;
-}					t_size;
-
 /*
 ** fillit.c
 */
 void				fillit(char **av);
-
 
 /*
 **	create_piece.c
@@ -67,10 +59,7 @@ t_piece				*create_piece(char *str, int value);
 void				init_pos_part_piece(char *str, t_piece **piece);
 void				set_pos_part_piece(t_piece **piece);
 t_pos				calc_pos_part(int x);
-void				set_size_piece(t_piece **piece);
 void				set_height_piece(t_piece **piece);
-void				set_width_piece(t_piece **piece);
-void				set_diff_width_piece(t_piece **piece);
 
 /*
 **	piece_tools.c
@@ -128,7 +117,7 @@ int					get_file(int fd, char **pieces);
 void				init_sequence(char **av, t_fillit *fillit);
 void				launch_sequence(t_fillit *fillit);
 void				free_fillit(t_fillit *fillit);
-void				set_error_quit(char *str, t_fillit *fillit);
+void				set_error_quit(t_fillit *fillit);
 
 /*
 **	opt_CHECK.c

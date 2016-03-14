@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/23 15:59:50 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/09 16:49:13 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/03/14 11:58:17 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_piece	*create_piece(char *str, int value)
 	}
 	piece->next = NULL;
 	piece->c = 'A' + value;
-	set_size_piece(&piece);
+	set_height_piece(&piece);
 	return (piece);
 }
 
@@ -71,13 +71,6 @@ void	set_pos_part_piece(t_piece **piece)
 	(*piece)->p1.y = 0;
 }
 
-void	set_size_piece(t_piece **piece)
-{
-	set_height_piece(piece);
-	set_width_piece(piece);
-	set_diff_width_piece(piece);
-}
-
 void	set_height_piece(t_piece **piece)
 {
 	int	max;
@@ -91,36 +84,9 @@ void	set_height_piece(t_piece **piece)
 	max = (max < (*piece)->p2.y) ? (*piece)->p2.y : max;
 	max = (max < (*piece)->p3.y) ? (*piece)->p3.y : max;
 	max = (max < (*piece)->p4.y) ? (*piece)->p4.y : max;
-	(*piece)->size.height = max - min + 1;
+	(*piece)->height = max - min + 1;
 }
 
-void	set_width_piece(t_piece **piece)
-{
-	int		width;
-
-	width = 1;
-	width = (!(*piece)->p2.y)) ? width + 1 : width;
-	width = (!(*piece)->p3.y)) ? width + 1 : width;
-	width = (!(*piece)->p4.y)) ? width + 1 : width;
-	(*piece)->size.width = width;
-}
-
-void	set_diff_width_piece(t_piece **piece)
-{
-	int		width;
-
-	if ((*piece)->p2.x) >= 0 && (*piece)->p3.x) >= 0 && (*piece)->p4.x) >= 0)
-		(*piece)->size.diff_width = 0;
-	else
-	{
-		width = (*piece)->p2.x);
-		width = (width > (*piece)->p3.x)) ? (*piece)->p3.x) : width;
-		width = (width > (*piece)->p4.x)) ? (*piece)->p4.x) : width;
-		(*piece)->size.diff_width = width;
-	}
-	
-}
-	
 t_pos	calc_pos_part(int x)
 {
 	t_pos	part;

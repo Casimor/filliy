@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/25 13:50:52 by bchevali          #+#    #+#             */
-/*   Updated: 2016/03/10 15:23:04 by bchevali         ###   ########.fr       */
+/*   Updated: 2016/03/14 12:00:42 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,6 @@ int				main(int ac, char **av)
 	if (ac != 2)
 		usage(av[0]);
 	else
-		fillit(ac, av);
+		fillit(av);
 	return (0);
 }
