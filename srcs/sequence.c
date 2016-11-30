@@ -6,7 +6,7 @@
 /*   By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/02/22 16:00:44 by lfouquet          #+#    #+#             */
-/*   Updated: 2016/03/14 12:09:32 by lfouquet         ###   ########.fr       */
+/*   Updated: 2016/11/30 11:19:56 by lfouquet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	init_sequence(char **av, t_fillit *fillit)
 	{
 		if (get_file(fd, &pieces))
 		{
-			if (get_pieces(pieces, &(fillit->pieces)))
+			if (pieces && get_pieces(pieces, &(fillit->pieces)))
 				fillit->nb_piece = count_piece(pieces);
 			else
 			{

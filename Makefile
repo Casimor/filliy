@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+         #
+#    By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/03/10 15:21:13 by bchevali         ###   ########.fr        #
+#    Updated: 2016/11/30 11:00:18 by lfouquet         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT_NAME			=	$(LIBFT_DIR)/libft.a
 LIBFT_INCLUDE_DIR	=	$(LIBFT_DIR)/includes
 
 COMPILER			=	gcc
-CFLAGS				=	-Wall -Wextra -Werror -c\
+CFLAGS				=	-Wall -Wextra -g -Werror -c\
 						-I$(INCLUDE_DIR) -I$(LIBFT_INCLUDE_DIR)
 LFLAGS				=	-L$(LIBFT_DIR) -l$(LIBFT)
 
