@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lfouquet <lfouquet@student.42.fr>          +#+  +:+       +#+         #
+#    By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/11/30 11:00:18 by lfouquet         ###   ########.fr        #
+#    Updated: 2016/12/08 18:04:23 by bchevali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,8 +41,8 @@ SRC					=	main.c				\
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 
 all:
-	@$(MAKE) $(LIBFT_NAME)
-	@$(MAKE) $(NAME)
+	$(MAKE) $(LIBFT_NAME)
+	$(MAKE) $(NAME)
 
 $(LIBFT_NAME):
 	@make -C $(LIBFT_DIR)
@@ -61,14 +61,17 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 clean:
 	@rm -rf $(OBJ)
 	@rm -rdf $(OBJ_DIR)
+	@(cd $(LIBFT_DIR) && $(MAKE) clean)
 
 fcleanlib:
 	@(cd $(LIBFT_DIR) && $(MAKE) fclean)
 
-fclean: clean fcleanlib
+fclean: clean
 	@rm -f $(NAME)
 
 re:
 	@$(MAKE) fcleanlib
 	@$(MAKE) fclean
 	@$(MAKE) all
+
+.PHONY:	all clean fclean fclean re
