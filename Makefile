@@ -6,7 +6,7 @@
 #    By: bchevali <bchevali@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2015/02/25 18:16:27 by bchevali          #+#    #+#              #
-#    Updated: 2016/12/08 18:04:23 by bchevali         ###   ########.fr        #
+#    Updated: 2016/12/08 18:36:28 by bchevali         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFT_NAME			=	$(LIBFT_DIR)/libft.a
 LIBFT_INCLUDE_DIR	=	$(LIBFT_DIR)/includes
 
 COMPILER			=	gcc
-CFLAGS				=	-Wall -Wextra -g -Werror -c\
+CFLAGS				=	-Wall -Wextra  -Werror -c\
 						-I$(INCLUDE_DIR) -I$(LIBFT_INCLUDE_DIR)
 LFLAGS				=	-L$(LIBFT_DIR) -l$(LIBFT)
 
@@ -40,14 +40,12 @@ SRC					=	main.c				\
 
 OBJ					=	$(addprefix $(OBJ_DIR)/, $(notdir $(SRC:.c=.o)))
 
-all:
-	$(MAKE) $(LIBFT_NAME)
-	$(MAKE) $(NAME)
+all: $(NAME)
 
 $(LIBFT_NAME):
 	@make -C $(LIBFT_DIR)
 
-$(NAME): $(OBJ)
+$(NAME): $(LIBFT_NAME) $(OBJ)
 	$(COMPILER) $(LFLAGS) $^ -o $@
 
 $(OBJ): | $(OBJ_DIR)
@@ -59,19 +57,19 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	$(COMPILER) $(CFLAGS) $^ -o $@
 
 clean:
-	@rm -rf $(OBJ)
-	@rm -rdf $(OBJ_DIR)
-	@(cd $(LIBFT_DIR) && $(MAKE) clean)
+	rm -rf $(OBJ)
+	rm -rdf $(OBJ_DIR)
+	$(MAKE) -C $(LIBFT_DIR) clean
 
 fcleanlib:
-	@(cd $(LIBFT_DIR) && $(MAKE) fclean)
+	$(MAKE) -C $(LIBFT_DIR) fclean
 
-fclean: clean
-	@rm -f $(NAME)
+fclean: clean fcleanlib 
+	rm -f $(NAME)
 
 re:
-	@$(MAKE) fcleanlib
-	@$(MAKE) fclean
-	@$(MAKE) all
+	$(MAKE) fcleanlib
+	$(MAKE) fclean
+	$(MAKE) all
 
-.PHONY:	all clean fclean fclean re
+.PHONY:	all clean fclean fcleanlib re
